@@ -1,4 +1,4 @@
-function randomNumber(minNumber, maxNumber) {
+function generateRandomNumber(minNumber, maxNumber) {
 
   if (typeof minNumber === 'number' && typeof maxNumber === 'number') {
 
@@ -12,7 +12,7 @@ function randomNumber(minNumber, maxNumber) {
   return NaN;
 }
 
-randomNumber(2, 5);
+generateRandomNumber(2, 5);
 
 function checkStringLenght(value, maxLength) {
   return value && value.length <= maxLength;
