@@ -1,20 +1,32 @@
-function createArrayOf25GeneratedObjects() {
+const LIKE_RANGE = {
+  min: 15,
+  max: 200,
+};
+
+const COMMENT_RANGE = {
+  min: 0,
+  max: 200,
+};
+
+const GENERATED_OBJECTS_COUNT = 25;
+
+function createArrayGeneratedObjects(amountObject) {
   const photosDescriptions = [];
 
-  for (let i = 0; i < 25; i++) {
-    photosDescriptions[i] = createObject(i + 1);
+  for (let i = 0; i < amountObject; i++) {
+    photosDescriptions.push(createObject(i + 1, LIKE_RANGE, COMMENT_RANGE));
   }
 }
 
-createArrayOf25GeneratedObjects();
+createArrayGeneratedObjects(GENERATED_OBJECTS_COUNT);
 
-function createObject(value) {
+function createObject(value, likeLength, commentLength) {
   return {
     id: value,
     url: `photos/${value}.jpg`,
     description: `Описание фотографии ${value}`,
-    likes: generateRandomNumber(15, 200),
-    comments: generateRandomNumber(0, 200),
+    likes: generateRandomNumber(likeLength.min, likeLength.max),
+    comments: generateRandomNumber(commentLength.min, commentLength.max),
   };
 }
 
