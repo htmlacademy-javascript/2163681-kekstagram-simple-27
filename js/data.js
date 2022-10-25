@@ -10,15 +10,16 @@ const COMMENT_RANGE = {
   max: 200,
 };
 
-function createArrayGeneratedObjects(amountObject) {
+function createArrayGeneratedPictureObjects(amountObject) {
   const photosDescriptions = [];
 
   for (let i = 0; i < amountObject; i++) {
-    photosDescriptions.push(createObject(i + 1, LIKE_RANGE, COMMENT_RANGE));
+    photosDescriptions.push(createPictureObject(i + 1, LIKE_RANGE, COMMENT_RANGE));
   }
+  return photosDescriptions;
 }
 
-function createObject(value, likeLength, commentLength) {
+function createPictureObject(value, likeLength, commentLength) {
   return {
     id: value,
     url: `photos/${value}.jpg`,
@@ -28,4 +29,4 @@ function createObject(value, likeLength, commentLength) {
   };
 }
 
-export { createArrayGeneratedObjects };
+export { createArrayGeneratedPictureObjects };
