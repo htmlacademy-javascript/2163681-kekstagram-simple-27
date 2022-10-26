@@ -1,5 +1,5 @@
-import { createArrayGeneratedObjects } from './data.js';
+import { toDrawMiniatures } from './miniature.js';
 
 const GENERATED_OBJECTS_COUNT = 25;
 
-createArrayGeneratedObjects(GENERATED_OBJECTS_COUNT);
+toDrawMiniatures(GENERATED_OBJECTS_COUNT);
