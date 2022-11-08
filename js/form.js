@@ -1,22 +1,27 @@
+import { resetScale } from './photo-scale.js';
+import { resetPhotoFilter } from './photo-filter.js';
+
 const uploadFileSelector = document.querySelector('#upload-file');
 const imgUploadOverlaySelector = document.querySelector('.img-upload__overlay');
 const bodySelector = document.querySelector('body');
-const uploadCancel = document. querySelector('#upload-cancel');
+const uploadCancel = document.querySelector('#upload-cancel');
 const imgUploadForm = document.querySelector('.img-upload__form');
 
-function opensModalWindow() {
+function onInputOpenModalChange() {
   imgUploadOverlaySelector.classList.remove('hidden');
   bodySelector.classList.add('modal-open');
 }
 
-function closeModalWindow() {
+function onButtonCloseModalClick() {
   imgUploadForm.reset();
+  resetScale();
+  resetPhotoFilter();
   imgUploadOverlaySelector.classList.add('hidden');
   bodySelector.classList.remove('modal-open');
-  document.addEventListener('keydown', onModalWindowKeydown);
+  document.addEventListener('keydown', onEscHideModalKeydown);
 }
 
-function onModalWindowKeydown(evt) {
+function onEscHideModalKeydown(evt) {
   if (evt.key === 'Escape') {
     evt.preventDefault();
     imgUploadOverlaySelector.classList.add('hidden');
@@ -24,11 +29,10 @@ function onModalWindowKeydown(evt) {
   }
 }
 
-uploadFileSelector.addEventListener('change', opensModalWindow);
-uploadCancel.addEventListener('click', closeModalWindow);
+uploadFileSelector.addEventListener('change', onInputOpenModalChange);
+uploadCancel.addEventListener('click', onButtonCloseModalClick);
 document.addEventListener('keydown', (evt) => {
   if (evt.key === 'Escape') {
-    closeModalWindow();
+    onButtonCloseModalClick();
   }
 });
-
