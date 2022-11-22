@@ -16,7 +16,7 @@ function onInputOpenModalChange() {
   imgUploadPreview.children[0].src = window.URL.createObjectURL(uploadFileSelector.files[0]);
   imgUploadOverlaySelector.classList.remove('hidden');
   bodySelector.classList.add('modal-open');
-  document.addEventListener('keydown', keydown);
+  document.addEventListener('keydown', onCloseModalKeydown);
 }
 
 function onButtonCloseModalClick() {
@@ -60,10 +60,10 @@ function onImgUploadFormSubmit(evt) {
 uploadFileSelector.addEventListener('change', onInputOpenModalChange);
 uploadCancel.addEventListener('click', onButtonCloseModalClick);
 
-function keydown(event) {
+function onCloseModalKeydown(event) {
   if (event.key === 'Escape' && !document.getElementsByClassName('error').length) {
     onButtonCloseModalClick();
-    document.removeEventListener('keydown', keydown);
+    document.removeEventListener('keydown', onCloseModalKeydown);
   }
 }
 

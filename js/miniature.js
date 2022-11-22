@@ -1,5 +1,5 @@
 import { getPictureObjects } from './fetch-service.js';
-import { errMassage } from './massages.js';
+import { showErrorMassage } from './massages.js';
 
 const pictureSection = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content;
@@ -15,7 +15,7 @@ function toDrawMiniatures() {
         toDrawMiniature(pictureObjects[i]);
       }
     }).catch(() => {
-      errMassage('Ошибка загрузки данных');
+      showErrorMassage('Ошибка загрузки данных');
     });
 }
 
