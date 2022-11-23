@@ -1,9 +1,8 @@
-const messageDisplayTime = 5000;
+const MESSAGE_DISPLAY_TIME = 5000;
 const pictureSection = document.querySelector('.pictures');
 
 function fileUploadError() {
-  const errorSellect = document.querySelector('#error').content.querySelector('.error');
-  const errorNoda = errorSellect.cloneNode(true);
+  const errorNoda = document.querySelector('#error').content.querySelector('.error').cloneNode(true);
   pictureSection.appendChild(errorNoda);
 
   pictureSection.querySelector('.error__button').addEventListener('click', () => {
@@ -22,8 +21,7 @@ function fileUploadError() {
 }
 
 function fileUploadSuccess() {
-  const successSelect = document.querySelector('#success').content.querySelector('.success');
-  const successNode = successSelect.cloneNode(true);
+  const successNode = document.querySelector('#success').content.querySelector('.success').cloneNode(true);
   pictureSection.appendChild(successNode);
 
   pictureSection.querySelector('.success__button').addEventListener('click', () => {
@@ -49,7 +47,7 @@ function anyClick(event, child, type) {
   }
 }
 
-function errMassage(massage) {
+function showErrorMassage(massage) {
   const caseErrorMassage = document.createElement('div');
   caseErrorMassage.style.zIndex = 100;
   caseErrorMassage.style.position = 'absolute';
@@ -67,9 +65,9 @@ function errMassage(massage) {
 
   setTimeout(() => {
     caseErrorMassage.remove();
-  }, messageDisplayTime);
+  }, MESSAGE_DISPLAY_TIME );
 }
 
-export { errMassage };
+export { showErrorMassage };
 export { fileUploadError };
 export { fileUploadSuccess };
