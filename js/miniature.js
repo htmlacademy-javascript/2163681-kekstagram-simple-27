@@ -1,5 +1,5 @@
-import { getPictureObjects } from './fetch-service.js';
-import { showErrorMassage } from './massages.js';
+import { getPictures } from './fetch-service.js';
+import { showErrorMessage } from './messages.js';
 
 const pictureSection = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content;
@@ -8,24 +8,25 @@ const pictureImg = pictureTemplate.querySelector('.picture__img');
 const pictureComments = pictureTemplate.querySelector('.picture__comments');
 const pictureLikes = pictureTemplate.querySelector('.picture__likes');
 
-function toDrawMiniatures() {
-  getPictureObjects()
-    .then((pictureObjects) => {
-      for (let i = 0; i < pictureObjects.length; i++) {
-        toDrawMiniature(pictureObjects[i]);
+const toDrawMiniature = (picture) => {
+  pictureImg.src = picture.url;
+  pictureLikes.textContent = picture.likes;
+  pictureComments.textContent = picture.comments;
+
+  const pictureNode = pictureLink.cloneNode(true);
+  pictureSection.appendChild(pictureNode);
+};
+
+const toDrawMiniatures = () => {
+  getPictures()
+    .then((pictures) => {
+      for (const picture of pictures) {
+        toDrawMiniature(picture);
       }
-    }).catch(() => {
-      showErrorMassage('Ошибка загрузки данных');
+    })
+    .catch(() => {
+      showErrorMessage('Ошибка загрузки данных');
     });
-}
-
-function toDrawMiniature(pictureObject) {
-  pictureImg.src = pictureObject.url;
-  pictureLikes.textContent = pictureObject.likes;
-  pictureComments.textContent = pictureObject.comments;
-
-  const cloneElement = pictureLink.cloneNode(true);
-  pictureSection.appendChild(cloneElement);
-}
+};
 
 export { toDrawMiniatures };
